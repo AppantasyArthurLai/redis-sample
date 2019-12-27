@@ -74,6 +74,6 @@ app.get("/rate/:date", (req, res) => {
 });
 
 // const port = process.env.port || 55688;
-let listen = app.listen(process.env.port || 55688, () => {
+let listen = app.listen(process.env.PORT || 55688, () => {
   console.log(`App listening on port ${listen.address().port}!`);
 });
