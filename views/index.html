@@ -4,8 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Currency Converter!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
   </head>
   <body>
     <section class="section">
@@ -57,22 +63,55 @@
       const datePicker = document.querySelector("#rateDate");
       const form = document.querySelector("#rateForm");
       const submitButton = document.querySelector("#rateForm button");
+
+      //   form.onsubmit = e => {
+      //     e.preventDefault();
+      //     submitButton.classList.add("is-loading");
+
+      //     const date = datePicker.value;
+      //     const url = `/rate/${date}`;
+      //     axios
+      //       .get(url)
+      //       .then(response => {
+      //         submitButton.classList.remove("is-loading");
+      //         showRates(response.data.rates);
+      //       })
+      //       .catch(error => {
+      //         console.log(error);
+      //       });
+      //   };
+
+      const visitsDiv = document.querySelector("#visits-count");
+
+
       form.onsubmit = e => {
         e.preventDefault();
         submitButton.classList.add("is-loading");
-
+        visitsDiv.classList.add("is-hidden");
         const date = datePicker.value;
         const url = `/rate/${date}`;
         axios
           .get(url)
           .then(response => {
             submitButton.classList.remove("is-loading");
+            // call function that shows the rates
             showRates(response.data.rates);
+            // call function that shows count of requests for each date
+            showVisits(response.data.count, date);
           })
           .catch(error => {
             console.log(error);
           });
       };
+
+      function showVisits(count, date) {
+        let html = `
+        The rates as at <strong>${date}</strong> 
+        have been checked <strong>${count}</strong> time(s).`;
+        visitsDiv.classList.remove("is-hidden");
+        visitsDiv.innerHTML = html;
+      }
+
       function showRates(rates) {
         let html = "";
         for (rate in rates) {
