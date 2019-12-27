@@ -35,7 +35,10 @@ app.listen(port, () => {
 
 // connect to Redis
 const REDIS_URL = process.env.REDIS_URL;
-const client = redis.createClient(REDIS_URL);
+const client = redis.createClient(REDIS_URL,{
+    password: process.env.REDIS_PWD
+    // db: process.env.REDIS_NAME
+});
 client.on('connect', () => {
     console.log(`connected to redis`);
 });
