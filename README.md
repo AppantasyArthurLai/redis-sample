@@ -16,7 +16,7 @@ https://www.manifold.co/blog/build-super-fast-apps-in-node-js-using-redis-cache-
 7. host on Heroku
 
 ## other frameworks
-1. Bulma css framework
+1. Bulma css framework（https://bulma.io/documentation/overview/start/）
 2. Awesome Font
 3. Axios Web Ajax
 
@@ -36,7 +36,7 @@ npm install
 npm start
 ```
 
-### push to Heroku
+### deploy to Heroku
 ```bash
 heroku create redis-fixerio
 heroku git:remote -a redis-fixerio
